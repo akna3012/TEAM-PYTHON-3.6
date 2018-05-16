@@ -1,0 +1,173 @@
+# PROJET CALCULATRICE NPI - BASE DE LA PROGRAMMATION  
+#Auteurs : AKEMINOU & MUKAM
+
+from tkinter import *
+main = Tk()
+main.geometry("500x510+553+90")
+main['bg'] = 'green'
+nb1 = " "
+pile = []
+
+#***********************************************************************************************
+# Couche Application (regroupement des fonctions d'affichage).
+#***********************************************************************************************
+
+# Selection des nombres compris entre 0 et 9, sera représente par la fonction LesNombres().    
+def num1():
+    ajout("1")
+
+def num2():
+    ajout("2")
+
+def num3():
+    ajout('3')
+
+def num4():
+    ajout("4")
+
+def num5():
+    ajout("5")
+
+def num6():
+    ajout("6")
+
+def num7():
+    ajout("7")
+
+def num8():
+    ajout("8")
+
+def num9():
+    ajout("9")
+
+def zero():
+    ajout("0")
+
+# Selection des differentes Operations, sera représente par la fonction Operations().
+def addi():
+    global pile
+    empile()
+    if len(pile) >= 2:
+        x = pile.pop()
+        y = pile.pop()
+        pile.append(y + x)
+    affiche()
+
+def soustr():
+    global pile
+    empile()
+    x = pile.pop()
+    y = pile.pop()
+    pile.append(y - x)
+    affiche()
+
+def multip():
+    global pile
+    empile()
+    x = pile.pop()
+    y = pile.pop()
+    pile.append(y * x)
+    affiche()
+
+def divis():
+    global pile
+    empile()
+    x = pile.pop()
+    y = pile.pop()
+    pile.append(y / x)
+    affiche()
+
+def point():
+    ajout(".")
+
+# Efface les donnees sur la calculatrice et dans la pile (reinitialisation).
+def clear():
+    global nb1, pile
+    if nb1 == "":
+        pile =[]
+    else:
+        nb1 = ""
+    label["text"] = ""
+    affiche()
+    
+# Affiche le contenu de la pile.
+def VoirPile ():
+    affiche()
+
+# Empile les nombres selectionnes.
+def empile(): 
+    global nb1
+    if nb1 != "":
+        pile.append(float(nb1)) 
+    nb1 = "" 
+    
+#*********************************************************************************************
+# Couche Logique (regroupement des fonctions de traitement).
+#*********************************************************************************************
+
+# Envoi les donnees selectionnes dans la zone d'affichage et dans la pile pour traitement.    
+def ajout(nb):
+    global nb1
+    nb1 += nb
+    label["text"] = nb1
+
+# Traitement des donnees en fonction de l'operation et affichage.
+def affiche():
+    global pile
+    message = ""
+    if len(pile) >= 3:
+         for i in range(len(pile) -3, len(pile)):
+             message += str(pile[i]) + "\n"
+    else:
+        for i in range(len(pile)):
+            message += str(pile[i]) + "\n"
+    message += "---\n" + nb1
+    label["text"] = message
+
+#********************************************************************************************
+# Couche donnees 
+# *******************************************************************************************
+
+# Reinitialisation des donnees.
+def clear():
+    global nb1, pile
+    if nb1 == "":
+        pile =[]
+    else:
+        nb1 = ""
+    label["text"] = ""
+    affiche()
+
+# Interface graphique de la calculatrice
+Frame1 = Frame(main, borderwidth=9, relief=RIDGE)
+Frame1.place(x=40, y=50)
+label = Label(Frame1, text="  0 ")
+label.pack(padx=190, pady=35)
+
+# Les differents  boutons de l'interface graphique de la calculatrice
+button = Button(main, text="      1      ", command=num1).place(x=60, y=250)
+Bouton = Button(main, text="      2      ", command=num2).place(x=140, y=250)
+Bouton = Button(main, text="      3      ", command=num3).place(x=220, y=250)
+Bouton = Button(main, text="      4      ", command=num4).place(x=60, y=300)
+Bouton = Button(main, text="      5      ", command=num5).place(x=140, y=300)
+Bouton = Button(main, text="      6      ", command=num6).place(x=220, y=300)
+Bouton = Button(main, text="      7      ", command=num7).place(x=60, y=350)
+Bouton = Button(main, text="      8      ", command=num8).place(x=140, y=350)
+Bouton = Button(main, text="      9      ", command=num9).place(x=220, y=350)
+Bouton = Button(main, text="      0      ", command=zero).place(x=140, y=425)
+
+Bouton = Button(main, text="      .      ", command=point).place(x=60, y=425)
+Bouton = Button(main, text="      +      ", command=addi).place(x=300, y=425)
+Bouton = Button(main, text="      -      ", command=soustr).place(x=300, y=350)
+Bouton = Button(main, text="      x      ", command=multip).place(x=300, y=250)
+Bouton = Button(main, text="      /      ", command=divis).place(x=300, y=300)
+
+Bouton = Button(main, text="   ENTRER   ", command=empile).place(x=395, y=370)
+Boutou = Button(main, text="     CLS     ", command=clear).place(x=220, y=425)
+Bouton = Button(main, text="     PILE       ", command=VoirPile).place(x=395, y=450)
+
+main.mainloop()
+
+#*******************************************************************************************
+# Fin du programme 
+#*******************************************************************************************
