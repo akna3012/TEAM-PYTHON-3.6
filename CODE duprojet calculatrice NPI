@@ -1,10 +1,10 @@
-# PROJET CALCULATRICE NPI - BASE DE LA PROGRAMMATION  
+# PROJET CALCULATRICE NPI - BASE DE LA PROGRAMMATION 
 #Auteurs : AKEMINOU & MUKAM
 
 from tkinter import *
 main = Tk()
 main.geometry("500x510+553+90")
-main['bg'] = 'green'
+main['bg'] = 'purple'
 nb1 = " "
 pile = []
 
@@ -46,7 +46,7 @@ def zero():
 # Selection des differentes Operations, sera représente par la fonction Operations().
 def addi():
     global pile
-    empile()
+    Empile()
     if len(pile) >= 2:
         x = pile.pop()
         y = pile.pop()
@@ -55,7 +55,7 @@ def addi():
 
 def soustr():
     global pile
-    empile()
+    Empile()
     x = pile.pop()
     y = pile.pop()
     pile.append(y - x)
@@ -63,7 +63,7 @@ def soustr():
 
 def multip():
     global pile
-    empile()
+    Empile()
     x = pile.pop()
     y = pile.pop()
     pile.append(y * x)
@@ -71,7 +71,7 @@ def multip():
 
 def divis():
     global pile
-    empile()
+    Empile()
     x = pile.pop()
     y = pile.pop()
     pile.append(y / x)
@@ -80,22 +80,12 @@ def divis():
 def point():
     ajout(".")
 
-# Efface les donnees sur la calculatrice et dans la pile (reinitialisation).
-def clear():
-    global nb1, pile
-    if nb1 == "":
-        pile =[]
-    else:
-        nb1 = ""
-    label["text"] = ""
-    affiche()
-    
 # Affiche le contenu de la pile.
 def VoirPile ():
     affiche()
 
 # Empile les nombres selectionnes.
-def empile(): 
+def Empile(): 
     global nb1
     if nb1 != "":
         pile.append(float(nb1)) 
@@ -129,7 +119,7 @@ def affiche():
 # *******************************************************************************************
 
 # Reinitialisation des donnees.
-def clear():
+def Efface():
     global nb1, pile
     if nb1 == "":
         pile =[]
@@ -141,7 +131,7 @@ def clear():
 # Interface graphique de la calculatrice
 Frame1 = Frame(main, borderwidth=9, relief=RIDGE)
 Frame1.place(x=40, y=50)
-label = Label(Frame1, text="  0 ")
+label = Label(Frame1, text="  0  ")
 label.pack(padx=190, pady=35)
 
 # Les differents  boutons de l'interface graphique de la calculatrice
@@ -162,8 +152,8 @@ Bouton = Button(main, text="      -      ", command=soustr).place(x=300, y=350)
 Bouton = Button(main, text="      x      ", command=multip).place(x=300, y=250)
 Bouton = Button(main, text="      /      ", command=divis).place(x=300, y=300)
 
-Bouton = Button(main, text="   ENTRER   ", command=empile).place(x=395, y=370)
-Boutou = Button(main, text="     CLS     ", command=clear).place(x=220, y=425)
+Bouton = Button(main, text="   ENTRER   ", command=Empile).place(x=395, y=370)
+Boutou = Button(main, text="     CLS     ", command=Efface).place(x=220, y=425)
 Bouton = Button(main, text="     PILE       ", command=VoirPile).place(x=395, y=450)
 
 main.mainloop()
@@ -171,4 +161,3 @@ main.mainloop()
 #*******************************************************************************************
 # Fin du programme 
 #*******************************************************************************************
-# MENU()
