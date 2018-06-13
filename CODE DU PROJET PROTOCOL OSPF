@@ -1,0 +1,53 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+import random
+
+def GenererReseau(mon_graphe):
+    """
+    Genere un Reseau sur le plot en cours en utilisant un arrangement circulaire
+    """
+    positions = nx.circular_layout(mon_graphe)
+    noms_des_arcs = dict([((u, v,), d['weight']) for u, v, d in mon_graphe.edges(data=True)])
+    nx.draw_networkx_nodes(mon_graphe, positions, labels=True)
+    nx.draw_networkx_labels(mon_graphe, positions)
+    nx.draw_networkx_edges(mon_graphe, positions, arrows=True)
+    nx.draw_networkx_edge_labels(mon_graphe, positions, edge_labels=noms_des_arcs)
+
+
+# Génère un graphe aléatoire en utilisant le modèle de Erdős–Rényi
+graphe_1 = nx.erdos_renyi_graph(10, 0.5, seed=123, directed=False)
+
+# Assigne des masses aléatoires à chaque arc
+for (u,v,w) in graphe_1.edges(data=True):
+    w['weight'] = random.randint(0,10)
+
+# Assigne une masse nulle à l'arc 0-1
+graphe_1.add_edge(0, 1, weight=0)
+
+# Cherche un arbre de recouvrement minimum du graphe_1
+arbre_1 = nx.minimum_spanning_tree(graphe_1)
+sorted(arbre_1.edges(data=True))
+
+# Fait une copie de graphe_1 et assigne une grosse masse à l'arc 0-1
+graphe_2 = nx.Graph(graphe_1)
+graphe_2.add_edge(0, 1, weight=100)
+
+# Cherche un arbre de recouvrement minimum du graphe_2
+arbre_2 = nx.minimum_spanning_tree(graphe_2)
+sorted(arbre_2.edges(data=True))
+
+# Affiche les deux graphes graphe_1 et graphe_2 ainsi que les deux arbres
+# arbre_1 et arbre_2
+plt.subplot(221)
+GenererReseau(graphe_1)
+
+plt.subplot(222)
+GenererReseau(arbre_1)
+
+plt.subplot(223)
+GenererReseau(graphe_2)
+
+plt.subplot(224)
+GenererReseau(arbre_2)
+
+plt.show()
