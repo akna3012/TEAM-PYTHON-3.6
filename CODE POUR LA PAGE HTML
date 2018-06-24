@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>PROJET DU PROTOCOL OSPF</title>
+</head>
+<body>
+
+# ******************PRESENTATION DE L'ARBRE 1******************************************************************************************* 
+<h1>L'arbre de recouvrement du reseau 1 </h1>
+<p>Avec le cout entre les nœuds 1 et 2 egal à 0.</p>
+<img src="ARBRE1.jpg" alt="ARBRE RESEAU 1">
+<p>On constat que le chemin le rapide entre les nœuds  ‘’ 0  et  1 ‘’  est le chemin direct de 0 à 1.</p>
+
+# ******************PRESENTATION DE L'ARBRE 2******************************************************************************************* 
+<h2>L'arbre de recouvrement du reseau 2 </h2>
+<p>Avec le cout entre les nœuds 1 et 2 egal à 100.</p>
+<img src="ARBRE2.jpg" alt="ARBRE RESEAU 1">
+<p>On constat que le chemin le rapide entre le nœud  ‘’ 0  et  1 ‘’  est le chemin qui passe par les nœuds ‘’0  puis 3 et  1’’.</p>
+
+# ****************************CONCLUSION******************************************************************************************* 
+<h3>Alors on peut aisément dire que pour le Protocol OSPF, le chemin le plus rapide est fonction des distances administratives. </h3>
+
+# ******************************REFERENCES******************************************************************************************* 
+
+<p>PROJET SUR LE PROTOCOL OSPF.</p>
+<p>Bachelier en informatique et système.</p>
+<p>Chargé de cours : M. E.Derasse.</p>
+<p>AUTEUR : AKEMINOU NAKPONSE YANNICK.</p>
+
+
+</body>
+</html>
+#*************************************************FIN DU CODE ***************************************************************************
